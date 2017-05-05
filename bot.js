@@ -1,6 +1,7 @@
 var twit = require('twit');
 var config = require('./config.js');
 var Twitter = new twit(config);
+var stream = Twitter.stream('user');
 
 var retweet = function() {
   var params = {
@@ -62,3 +63,11 @@ function ranDom(arr) {
   var index = Math.floor(Math.random()*arr.length);
   return arr[index];
 };
+
+stream.on('follow', followed);
+function followed(event) {
+  console.log('Follow Event is running');
+  var name = event.source.name,
+  var screenName = event.source.screen_name;
+  tweetNow('@' + screenName + ' Thank you for the follow!');
+}
