@@ -1,10 +1,10 @@
 var twit = require('twit');
-var config = require('./config.js')
+var config = require('./config.js');
 var Twitter = new twit(config);
 
 var retweet = function() {
   var params = {
-    q: '#nodejs, #Nodejs',
+    q: '#codeNewbie, #CodeNewbie, #freecodecamp, #freeCodeCamp',
     result_type: 'recent',
     lang: 'en'
   }
@@ -12,7 +12,7 @@ var retweet = function() {
   Twitter.get('search/tweets', params, function(err, data) {
     if (!err) {
       var retweetID = data.statuses[0].id_str;
-      Twitter.post('statuses/retweet/:id'), {
+      Twitter.post('statuses/retweet/:id', {
         id: retweetID
       }, function(err, response) {
         if (response) {
@@ -24,7 +24,7 @@ var retweet = function() {
       });
     }
     else {
-      console.log('Something went wrong while SEARCHING')
+      console.log('Something went wrong while SEARCHING');
     }
   });
 }
@@ -34,7 +34,7 @@ setInterval(retweet, 3000000);
 
 var favoriteTweet = function() {
   var params = {
-    q: '#nodejs, #Nodejs',
+    q: '#codeNewbie, #CodeNewbie #freecodecamp, #freeCodeCamp',
     result_type: 'recent',
     lang: 'en'
   }
@@ -45,7 +45,7 @@ var favoriteTweet = function() {
     if (typeof randomTweet != 'undefined') {
       Twitter.post('favorites/create', {id: randomTweet.id_str}, function(err, response) {
         if (err) {
-          console.log('CANNOT BE FAVORITE, ERROR');
+          console.log('CANNOT BE FAVORITED, ERROR');
         }
         else {
           console.log('FAVORITED');
@@ -58,7 +58,7 @@ var favoriteTweet = function() {
 favoriteTweet();
 setInterval(favoriteTweet, 3600000);
 
-function ranDom (arr) {
+function ranDom(arr) {
   var index = Math.floor(Math.random()*arr.length);
   return arr[index];
 };
