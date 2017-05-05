@@ -71,3 +71,17 @@ function followed(event) {
   var screenName = event.source.screen_name;
   tweetNow('@' + screenName + ' Thank you for the follow!');
 }
+
+function tweetNow(tweetTxt) {
+  var tweet = {
+    status: tweetTxt
+  }
+  Twitter.post('statuses/update', tweet, function(err, data, response) {
+    if (err) {
+      console.log("Error in replying");
+    }
+    else {
+      console.log("Reply successful");
+    }
+  });
+}
