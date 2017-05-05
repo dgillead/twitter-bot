@@ -67,8 +67,9 @@ function ranDom(arr) {
 stream.on('follow', followed);
 function followed(event) {
   console.log('Follow Event is running');
-  var name = event.source.name,
-  var screenName = event.source.screen_name;
+  var
+    name = event.source.name,
+    screenName = event.source.screen_name;
   tweetNow('@' + screenName + ' Thank you for the follow!');
 }
 
